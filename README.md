@@ -17,7 +17,8 @@ The data used in this article originates from a waterboard in the Netherlands. I
 <br />
 
 ## Article link [Environmental ranges discriminating between macrophytes groups in European rivers](https://doi.org/10.1371/journal.pone.0269744)<br />
-The data used in this article originates from multiple sources and sometimes it is not exactly clear which laboratory procedure and equipment were used to obtain the data. This is one of the dissadvantages of larger datasets from multiple sources, which need to be accepted and considered. Nonethless, even due to its coarseness, it contains valuable data with relative consistent patterns fitting with others. The sources are mentioned in the supplementary information.
+The data used in this article originates from multiple sources and sometimes it is not exactly clear which laboratory procedure and equipment were used to obtain the data. This is one of the dissadvantages of larger datasets from multiple sources, which need to be accepted and considered. Nonethless, even due to its coarseness, it contains valuable data with relative consistent patterns fitting with others. The sources are mentioned in the supplementary information.<br />
+<br />
 [Link to Data](https://github.com/snwikaij/Data/blob/main/PLOS_One_Kaijser_et_al._2022.csv)<br />
 [Link to Supplementary information](https://github.com/snwikaij/Data/blob/main/PLOS_Kaijser_et_al._2022_Supplementary_information.docx)<br />
 <br />
