@@ -12,6 +12,6 @@ Welcome to my data repository! I hope this data can help you in satisfying your 
 <br />
 
 ## Article link [Environmental ranges discriminating between macrophytes groups in European rivers](https://doi.org/10.1371/journal.pone.0269744)<br />
-[Link to Data](https://github.com/snwikaij/Data/blob/main/PLOS_Kaijser_et_al._2022.csv)<br />
+[Link to Data](https://github.com/snwikaij/Data/blob/main/PLOS_One_Kaijser_et_al._2022.csv)<br />
 [Link to Supplementary material](https://github.com/snwikaij/Data/blob/main/PLOS_Kaijser_et_al._2022_Supplementary_information.docx)<br />
 <br />
