@@ -1,8 +1,17 @@
 # Data and Supplementary material<br />
-## [Salinity tolerance of aquatic plants indicated by monitoring data from the Netherlands](https://doi.org/10.1016/j.aquabot.2019.103129)<br />
-[Data](https://github.com/snwikaij/Data/blob/main/Aquatic_Botany_Kaijser_et_al._2019.csv)<br />
-[Supplementary material](https://github.com/snwikaij/Data/blob/main/Aquatic_Botany_Kaijser_et_al._2019_Supplementary_information.docx)<br />
+Each article is linked whit its DOI and sorted in the repository by the name of the Journal, first auther and year (Journalname_Author_Year). Every data source, if I am officially allowed to share, can be accessed via the "Link to Data", equally for the Supplementary information. If I am not allowed to share the data please contact me and perhaps I can convince the authorities, based on the content of your study. The data is in the .csv format, meaning it can be directly loaded into R. For example, the data to Salinity tolerance of aquatic plants can be loaded into R as: read.csv(url("https://raw.githubusercontent.com/snwikaij/Data/main/Aquatic_Botany_Kaijser_et_al._2019.csv"), header = TRUE). <br /> 
+
+## Article link [Salinity tolerance of aquatic plants indicated by monitoring data from the Netherlands](https://doi.org/10.1016/j.aquabot.2019.103129)<br />
+[Link to Data](https://github.com/snwikaij/Data/blob/main/Aquatic_Botany_Kaijser_et_al._2019.csv)<br />
+[Link to Supplementary material](https://github.com/snwikaij/Data/blob/main/Aquatic_Botany_Kaijser_et_al._2019_Supplementary_information.docx)<br />
 <br />
-## [The interplay of nutrients, dissolved inorganic carbon and algae in determining macrophyte occurrences in rivers](https://doi.org/10.1016/j.scitotenv.2021.146728)<br />
-[Data](https://github.com/snwikaij/Data/blob/main/STOTEN_Kaijser_et_al._2021_macrophytes.csv)<br />
-[Supplementary material](https://github.com/snwikaij/Data/blob/main/STOTEN_Kaijser_et_al._2021_Supplementary_information.docx)<br />
+
+## Article link [The interplay of nutrients, dissolved inorganic carbon and algae in determining macrophyte occurrences in rivers](https://doi.org/10.1016/j.scitotenv.2021.146728)<br />
+[Link to Data](https://github.com/snwikaij/Data/blob/main/STOTEN_Kaijser_et_al._2021_macrophytes.csv)<br />
+[Link to Supplementary material](https://github.com/snwikaij/Data/blob/main/STOTEN_Kaijser_et_al._2021_Supplementary_information.docx)<br />
+<br />
+
+## Article link [Environmental ranges discriminating between macrophytes groups in European rivers](https://doi.org/10.1371/journal.pone.0269744)<br />
+[Link to Data](https://github.com/snwikaij/Data/blob/main/PLOS_Kaijser_et_al._2022.csv)<br />
+[Link to Supplementary material](https://github.com/snwikaij/Data/blob/main/PLOS_Kaijser_et_al._2022_Supplementary_information.docx)<br />
+<br />
