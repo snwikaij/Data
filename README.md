@@ -23,9 +23,17 @@ The data used in this article originates from multiple sources and sometimes it 
 [Link to Supplementary information](https://github.com/snwikaij/Data/blob/main/PLOS_One_Kaijser_et_al._2022_Supplementary_information.docx)<br />
 <br />
 
+
 ## Article link [Reach hydromorphology: a crucial environmental variable for the occurrence of riverine macrophytes](https://link.springer.com/article/10.1007/s10750-022-04983-w)<br />
 The data used in this article originates from multiple water managing authorities within the state of North Rhine-Westphalia (Germany). Some unclear notations and naming in German is present.<br />
 <br />
 [Link to Data](https://github.com/snwikaij/Data/blob/main/Hydrobiologia_Kaijser_et_al._2022.csv)<br />
 [Link to Supplementary information](https://github.com/snwikaij/Data/blob/main/Hydrobiologia_Kaijser_et_al._Supplementary_information.docx)<br />
+<br />
+
+## Article link [Reach hydromorphology: a crucial environmental variable for the occurrence of riverine macrophytes](https://link.springer.com/article/10.1007/s10750-022-04983-w)<br />
+The data used in this article originates from multiple water managing authorities within the state of North Rhine-Westphalia (Germany). Some unclear notations and naming in German is present.<br />
+<br />
+[Link to Data](https://github.com/snwikaij/Data/blob/main/STOTEN_Kaijser_et_al._2024.csv)<br />
+[Link to Supplementary information](https://github.com/snwikaij/Data/blob/main/STOTEN_Kaijser_et_al._2024_Supplementary_information.docx)<br />
 <br />
