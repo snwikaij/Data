@@ -31,8 +31,8 @@ The data used in this article originates from multiple water managing authoritie
 [Link to Supplementary information](https://github.com/snwikaij/Data/blob/main/Hydrobiologia_Kaijser_et_al._Supplementary_information.docx)<br />
 <br />
 
-## Article link [Reach hydromorphology: a crucial environmental variable for the occurrence of riverine macrophytes](https://link.springer.com/article/10.1007/s10750-022-04983-w)<br />
-The data used in this article originates from multiple water managing authorities within the state of North Rhine-Westphalia (Germany). Some unclear notations and naming in German is present.<br />
+## Article link [Differential associations of five riverine organism groups with multiple stressors]([https://link.springer.com/article/10.1007/s10750-022-04983-w](https://www.sciencedirect.com/science/article/pii/S0048969724032522?via%3Dihub)<br />
+The data used in this article originates from sampling designed within the RESIST-project. More variables are given in this dataset than used in the publication. Perhaps this might lend itself usefull for other analysisis. As I am only disclosed ot share what I used, therefore only the table used for the PCA and the similairity formated data for the different GLMMs are provided. Not the actuall raw data utilized in further studies. <br />
 <br />
 [Link to Data](https://github.com/snwikaij/Data/blob/main/STOTEN_Kaijser_et_al._2024.csv)<br />
 [Link to Supplementary information](https://github.com/snwikaij/Data/blob/main/STOTEN_Kaijser_et_al._2024_Supplementary_information.docx)<br />
