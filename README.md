@@ -44,4 +44,5 @@ The data used in this article originates from an exploratory sampling protocol i
 <br />
 [Link to Data](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025.xlsx)<br />
 [Link to TP niche code](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._niche_TP.R)<br />
+[Link to CCA code](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_cca.R)<br />
 [Link to GLMM code](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._GLMM_TP.R)<br />
