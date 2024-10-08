@@ -37,3 +37,8 @@ The data used in this article originates from multiple water managing authoritie
 The data used in this article originates from sampling designed within the RESIST-project. More variables are given in this dataset than used in the publication. Perhaps this might lend itself usefull for other analysisis. As I am only disclosed ot share what I used, therefore only the table used for the PCA and the similairity formated data for the different GLMMs are provided. Not the actuall raw data utilized in further studies. <br />
 <br />
 [Link to Data](https://github.com/snwikaij/Data/blob/main/STOTEN_Kaijser_et_al._2024.xlsx)<br />
+
+# 2025
+### [Macrophytes and their sedimentary phosphorus niche in lowland rivers](...) <br />
+The data used in this article originates from an exploratory sampling protocol in NRW at the moment it is not published (yet) but it is given in the data availability statement I provide the data online. I assume it will be published somewhere 2025(/2026). I provide three files the full and community (0/1) and environmental variable matrix. <br />
+<br />
