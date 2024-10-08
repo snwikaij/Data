@@ -3,6 +3,8 @@ library(R2jags)
 library(ggplot2)
 library(see)
 
+#To use the whole code JAGS is needed running outside R https://mcmc-jags.sourceforge.io/
+
 #download the data
 url      <- "https://raw.githubusercontent.com/snwikaij/Data/main/Unknown_Kaijser_et_al._2025.xlsx"
 destfile <- tempfile(fileext = ".xlsx")
