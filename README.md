@@ -42,3 +42,4 @@ The data used in this article originates from sampling designed within the RESIS
 ### [Macrophytes and their sedimentary phosphorus niche in lowland rivers](...) <br />
 The data used in this article originates from an exploratory sampling protocol in NRW at the moment it is not published (yet) but it is given in the data availability statement I provide the data online. I assume it will be published somewhere 2025(/2026). I provide three files the full and community (0/1) and environmental variable matrix. <br />
 <br />
+[Link to Data](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025.xlsx)<br />
