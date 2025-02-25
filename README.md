@@ -10,8 +10,8 @@ These data include two scripts:<br />
 Main Script – Generates the figures for the main text, including Figures S7, S8, S9, and S10, but excluding Figures 5 and 6. <br />
 Appendix script - Produces the figures presented in the appendix. <br />
 <br />
-The other two Excel documents (Data_and_priors) included are the data and priors needed to run main and appendix script, and contain the posterior estimates of the full analysis. 
-All the majority of the functions are part of the [EcoPostView](https://snwikaij.github.io/EcoPostView/EcoPostView.html) in R.<br />
+Additionally, two Excel documents (Data_and_priors) are included. These contain the necessary data and priors to run both the main and appendix scripts, as well as the posterior estimates from the full analysis.
+Most functions used in the scripts are part of the  [EcoPostView](https://snwikaij.github.io/EcoPostView/EcoPostView.html) in R.<br />
 <br />
 [Link to Main script](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Main_script.R)<br />
 [Link to Data and priors](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Data_and_priors.xlsx)<br />
