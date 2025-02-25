@@ -12,7 +12,7 @@ Appendix script - Produces the figures presented in the appendix. <br />
 <br />
 The other two Excel documents (Data_and_priors) included are the data and priors needed to run both script 1. and 2., and the posterior result of the full analysis.<br />
 <br />
-[Link to Main script]()
+[Link to Main script](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Main_script.R)
 [Link to Data and priors](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Data_and_priors.xlsx)<br />
 [Link to Posterior results](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Supplementary_Material_3.xlsx)<br />
 
