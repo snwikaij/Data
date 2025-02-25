@@ -13,7 +13,7 @@ Appendix script - Produces the figures presented in the appendix. <br />
 The other two Excel documents (Data_and_priors) included are the data and priors needed to run main and appendix script, and contain the posterior estimates of the full analysis. 
 All the majority of the functions are part of the [EcoPostView](https://snwikaij.github.io/EcoPostView/EcoPostView.html) in R.<br />
 <br />
-[Link to Main script](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Main_script.R)
+[Link to Main script](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Main_script.R)<br />
 [Link to Data and priors](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Data_and_priors.xlsx)<br />
 [Link to Posterior results](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Supplementary_Material_3.xlsx)<br />
 
