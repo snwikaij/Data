@@ -6,7 +6,7 @@ read.csv(url("https://raw.githubusercontent.com/snwikaij/Data/main/Aquatic_Botan
 
 # 2025
 ### [Global scale quantification of stressor responses in five riverine organism groups](...)<br />
-These data contain two scripts one (1.) for the figures in the main text plus Fig. S7, 8 and 9, exlcuding figures 5 and 6 and a second (2.) to generating the figures given in the annex. The other two Excel documents (Data_and_priors) included are the data and priors needed to run both script 1. and 2., and the posterior result of the full analysis.
+These data contain two scripts one (1.) for the figures in the main text plus Fig. S7, 8 and 9, exlcuding figures 5 and 6 and a second (2.) to generating the figures given in the annex. The other two Excel documents (Data_and_priors) included are the data and priors needed to run both script 1. and 2., and the posterior result of the full analysis.<br />
 <br />
 [Link to Data and priors](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._Data_and_priors.xlsx)<br />
 [Link to Posterior results](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._Supplementary_Material_3.xlsx)<br />
