@@ -8,7 +8,8 @@ read.csv(url("https://raw.githubusercontent.com/snwikaij/Data/main/Aquatic_Botan
 ### [Global scale quantification of stressor responses in five riverine organism groups](...)<br />
 These data contain two scripts one (1.) for the figures in the main text plus Fig. S7, 8 and 9, exlcuding figures 5 and 6 and a second (2.) to generating the figures given in the annex. The other two Excel documents (Data_and_priors) included are the data and priors needed to run both script 1. and 2., and the posterior result of the full analysis.
 <br />
-
+[Link to Data and priors](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._Data_and_priors.xlsx)<br />
+[Link to Posterior results](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._Supplementary_Material_3.xlsx)<br />
 
 ### [Macrophytes and their sedimentary phosphorus niche in lowland rivers](...) <br />
 The data used in this article originates from an exploratory sampling protocol in NRW at the moment it is not published (yet) but it is given in the data availability statement I provide the data online. I assume it will be published somewhere 2025(/2026). I provide five files the full matrix, community matrix (0/1), environmental variable matrix, data used for the GLMM and priors. <br />
