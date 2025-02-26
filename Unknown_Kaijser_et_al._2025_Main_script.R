@@ -22,7 +22,7 @@ wd <- getwd()
 numberofcores <- parallel::detectCores()
 
 #Upload the data (literature) and priors
-url         <- "https://raw.githubusercontent.com/snwikaij/Data/main/Unknown_Kaijser_et_al._2025_Data_and_priors.xlsx"
+url         <- "https://raw.githubusercontent.com/snwikaij/Data/main/Unknown_Kaijser_et_al._2025_Supplementary_Information2.xlsx"
 destfile    <- tempfile(fileext = ".xlsx")
 download.file(url, destfile, mode = "wb")
 literature  <- read_xlsx(destfile, 1)
