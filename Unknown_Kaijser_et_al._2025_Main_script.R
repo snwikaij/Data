@@ -1,7 +1,7 @@
 library(readxl)
 library(ggplot2)
 library(R2jags)
-library(tidyr)
+library(parallel)
 library(devtools)
 library(gridExtra)
 library(grid)
@@ -13,6 +13,9 @@ library(EcoPostView)
 
 #Get wd, this will be the location where all figures will be stored.
 wd <- getwd()
+
+#Detect the number of cores
+numberofcores <- parallel::detectCores()
 
 #Upload the data (literature) and priors
 url         <- "https://raw.githubusercontent.com/snwikaij/Data/main/Unknown_Kaijser_et_al._2025_Data_and_priors.xlsx"
@@ -53,9 +56,10 @@ mod <- meta(estimate = mod_data$estimate,
              grouping = mod_data$group,
              prior_mu = as.data.frame(priors[c(2,4,6,8)]),
              prior_mu_se = as.data.frame(priors[c(3,5,7,9)]),
-             n_iter = 15000,
+             prior_study_var = 5,
+             n_iter = 30000,
              n_thin = 30,
-             n_chain= 30)
+             n_chain= numberofcores)
 
 ##############
 #Select order#
@@ -99,9 +103,9 @@ mod_sens <- meta(estimate = mod_data$estimate,
                  grouping = mod_data$group,
                  prior_mu = 0,
                  prior_mu_se = 10,
-                 n_iter = 15000,
+                 n_iter = 30000,
                  n_thin = 30,
-                 n_chain= 30)
+                 n_chain= numberofcores)
 
 mod_sens$Estimates$b1$estimate[mod_sens$Estimates$b1$predictor %in% c("Flow-cessation", "Oxygen-depletion")] <- -1*mod_sens$Estimates$b1$estimate[mod_sens$Estimates$b1$predictor %in% c("Flow-cessation", "Oxygen-depletion")]
 
