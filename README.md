@@ -1,6 +1,7 @@
 # Data and supplementary information<br />
 <p align="justify">
 Welcome to my data repository! I hope this data can help you in satisfying your curiosities or strengthen your article(s). Below in the "read.me" each article is linked with its DOI to the online version of the Journal. The files are sorted in the repository by (1) the name of the Journal, (2) first author and (3) year of publication (Journal_Author_Year). The links/source  are ordered from oldest to newest, per year of publication. Every data source, if I am officially allowed to share, can be accessed via the "Link to Data". Equally, for the Supplementary material via "Link to Supplementary material". The data is in the .xlsx or .csv format, meaning it can be directly loaded into R for simplicity. For example, the csv to "Salinity tolerance of aquatic plants ..." can be loaded into R as: </p>
+
 ```
 read.csv(url("https://raw.githubusercontent.com/snwikaij/Data/main/Aquatic_Botany_Kaijser_et_al._2019.csv"), header = T)
 ```
