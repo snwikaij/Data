@@ -1,6 +1,6 @@
 # Data and supplementary information<br />
 <p align="justify">
-Welcome to my data repository! I hope this data can help you in satisfying your curiosities or strengthen your article(s). Below in the "read.me" each article is linked with its DOI to the online version of the Journal. The files are sorted in the repository by (1) the name of the Journal, (2) first author and (3) year of publication (Journal_Author_Year). The links/source  are ordered from oldest to newest, per year of publication. Every data source, if I am officially allowed to share, can be accessed via the "Link to Data". Equally, for the Supplementary material via "Link to Supplementary material". The data is in the .xlsx or .csv format, meaning it can be directly loaded into R for simplicity. For example, the csv to "Salinity tolerance of aquatic plants ..." can be loaded into R as: </p>
+Welcome to my data repository! I hope this data can help you in satisfying your curiosities or strengthen your article(s). Below in the "read.me" each article is linked with its DOI to the online version of the Journal. The files are sorted in the repository by (1) the name of the Journal, (2) first author and (3) year of publication (Journal_Author_Year). The links/source  are ordered from oldest to newest, per year of publication. Every data source, if I am officially allowed to share, can be accessed via the "Link to Data". Equally, for the Supplementary material via "Link to Supplementary material". The data is in the .xlsx or .csv format, meaning it can be directly loaded into R for simplicity. For example, the csv to "Salinity tolerance of aquatic plants ..." can be loaded into R as: 
 
 ```
 read.csv(url("https://raw.githubusercontent.com/snwikaij/Data/main/Aquatic_Botany_Kaijser_et_al._2019.csv"), header = T)
@@ -8,13 +8,12 @@ read.csv(url("https://raw.githubusercontent.com/snwikaij/Data/main/Aquatic_Botan
 
 # 2025
 ### [Global scale quantification of stressor responses in five riverine organism groups](...)<br />
-<p align="justify">
 These data include two scripts:<br />
 Main Script – Generates the figures for the main text, including Figures S7, S8, S9, and S10, but excluding Figures 5 and 6. <br />
 Appendix script - Produces the figures presented in the appendix. <br />
 <br />
 Additionally, two Excel documents (Data_and_priors) are included. These contain the necessary data and priors to run both the main and appendix scripts, as well as the posterior estimates from the full analysis.
-Most functions used in the scripts are part of the  [EcoPostView](https://snwikaij.github.io/EcoPostView/EcoPostView.html) in R. This R package can be installed via GitHub using the `devtools` package and to use all functions JAGS needs to be installed from https://sourceforge.net/projects/mcmc-jags/ <br /> </p>
+Most functions used in the scripts are part of the  [EcoPostView](https://snwikaij.github.io/EcoPostView/EcoPostView.html) in R. This R package can be installed via GitHub using the `devtools` package and to use all functions JAGS needs to be installed from https://sourceforge.net/projects/mcmc-jags/ <br /> 
 <br />
 [Link to Main script](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Main_script.R)<br />
 [Link to Appendix script](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Appendix_script.R)<br />
@@ -64,7 +63,7 @@ The data used in this article originates from a waterboard in the Netherlands. I
 [Link to Data](https://github.com/snwikaij/Data/blob/main/Aquatic_Botany_Kaijser_et_al._2019.csv)<br />
 [Link to Supplementary information](https://github.com/snwikaij/Data/blob/main/Aquatic_Botany_Kaijser_et_al._2019_Supplementary_information.docx)<br />
 <br />
-
+</p>
 
 
 
