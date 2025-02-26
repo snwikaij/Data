@@ -15,7 +15,7 @@ library(EcoPostView)
 wd <- getwd()
 
 #Upload the data (literature) and priors
-url         <- "https://raw.githubusercontent.com/snwikaij/Data/main/Unknown_Kaijser_et_al._Data_and_priors.xlsx"
+url         <- "https://raw.githubusercontent.com/snwikaij/Data/main/Unknown_Kaijser_et_al._2025_Data_and_priors.xlsx"
 destfile    <- tempfile(fileext = ".xlsx")
 download.file(url, destfile, mode = "wb")
 literature  <- read_xlsx(destfile, 1)
