@@ -16,7 +16,7 @@ Most functions used in the scripts are part of the  [EcoPostView](https://snwika
 [Link to Main script](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Main_script.R)<br />
 [Link to Appendix script](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Appendix_script.R)<br />
 <br />
-[Link to Data and priors](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Data_and_priors.xlsx)<br />
+[Link to Data and priors](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Supplementary_Information2.xlsx)<br />
 [Link to Posterior results](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Supplementary_Information_3.xlsx)<br />
 
 ### [Macrophytes and their sedimentary phosphorus niche in lowland rivers](...) <br />
