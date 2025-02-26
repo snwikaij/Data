@@ -1,20 +1,24 @@
 library(readxl)
 library(ggplot2)
-library(R2jags)
 library(parallel)
+library(usethis)
+library(mime)
 library(devtools)
 library(gridExtra)
 library(grid)
 
+#JAGS needs to be installed from https://sourceforge.net/projects/mcmc-jags/
+library(R2jags)
+
 #For further information check https://snwikaij.github.io/EcoPostView/EcoPostView.html
 #One needs to install the package from GitHub
-#install.github("snwikaij/EcoPostView")
+devtools::install_github("snwikaij/EcoPostView")
 library(EcoPostView)
 
 #Get wd, this will be the location where all figures will be stored.
 wd <- getwd()
 
-#Detect the number of cores
+#Detect number of cores
 numberofcores <- parallel::detectCores()
 
 #Upload the data (literature) and priors
