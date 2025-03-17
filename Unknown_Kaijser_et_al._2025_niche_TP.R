@@ -1,6 +1,7 @@
 library(readxl)
 library(R2jags)
 library(ggplot2)
+library(tidyr)
 library(see)
 
 #To use the whole code JAGS is needed running outside R https://mcmc-jags.sourceforge.io/
