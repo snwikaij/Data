@@ -1,3 +1,5 @@
+library(ggplot2)
+
 asses_bias <- function(b1=-0.3, b0=3, nsim=3000){
 
 df <- array(NA, dim=c(nsim,6))
@@ -54,11 +56,11 @@ coverage <- prop.table(table(coverage), margin = 1)
 textbox  <- cbind.data.frame(precision, coverage[,2], textbox)
 colnames(textbox)[4:5] <- c("coverage", "value")
 textbox$text <- paste("mean deviation \nfrom true estimate=", round(textbox$mu,2),
-                  "\nsd standard deviation \nof error=", round(textbox$sd, 2),
+                  "\nStandard deviation \nof precision=", round(textbox$sd, 2),
                   "\ncoverage probability=", round(textbox$coverage,2))
 
 pl1+geom_text(data=textbox, aes(x=-0.05, y=value, label=text))}
-
+                       
 figure <- asses_bias()
 
 print(figure)
