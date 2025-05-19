@@ -12,7 +12,7 @@ These data include two scripts:<br />
 Main Script – Generates the figures for the main text, including Figures S7, S8, S9, and S10, but excluding Figures 5 and 6. <br />
 Appendix script - Produces the figures presented in the appendix. <br />
 <br />
-Additionally, two Excel documents (Data_and_priors) are included. These contain the necessary data and priors to run both the main and appendix scripts, as well as the posterior estimates from the full analysis.
+Additionally, two Excel documents (Data_and_priors and Link to Posterior) are included. These contain the necessary data and priors to run both the main and appendix scripts, as well as the acces the posterior estimates from the full analysis.
 Most functions used in the scripts are part of the  [EcoPostView](https://snwikaij.github.io/EcoPostView/EcoPostView.html) in R. This R package can be installed via GitHub using the `devtools` package and to use all functions JAGS needs to be installed from https://sourceforge.net/projects/mcmc-jags/ <br /> 
 <br />
 [Link to Main script](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Main_script.R)<br />
