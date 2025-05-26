@@ -10,6 +10,11 @@ download.file(url, destfile, mode = "wb")
 com.mat     <- read_xlsx(destfile, 2)
 env.mat     <- read_xlsx(destfile, 3)
 
+#Sample size per taxon
+n.taxon      <- data.frame(n=colSums(com.mat>0))
+n.taxon$text <- ifelse(n.taxon$n>=5, "bold", "plain")
+n.taxon$size <- ifelse(n.taxon$n>=5, 4, 3)
+
 #run cca
 my.cca <- vegan::cca(com.mat ~ ., data=env.mat, na.action=na.omit)
 
@@ -64,7 +69,7 @@ vecnames$CCA2[12] <- vecnames$CCA2[12]+0.04
 vnames <- plyr::mapvalues(rownames(vecnames), from=c("`P (S)`", "`P (P)`"), to=c("`TP (S)`", "`TP (P)`"))
 
 #plot results
-ggplot(speciespoints, aes(CCA1, CCA2))+xlab(CCA1)+ylab(CCA2)+
+pl3 <- ggplot(speciespoints, aes(CCA1, CCA2))+xlab(CCA1)+ylab(CCA2)+
   geom_vline(xintercept = 0, lty=2)+geom_hline(yintercept = 0, lty=2)+
   geom_segment(data=vectors, aes(x = 0, y = 0, xend = CCA1*2, yend = CCA2*2),
                col=colornames, lwd=0.6, alpha = 0.7,
@@ -72,8 +77,8 @@ ggplot(speciespoints, aes(CCA1, CCA2))+xlab(CCA1)+ylab(CCA2)+
   annotate("text", x=ifelse(vecnames$CCA1 > 0, vecnames$CCA1*2+0.15, vecnames$CCA1*2-0.15),
            y=ifelse(vecnames$CCA2 > 0, vecnames$CCA2*2+0.3, vecnames$CCA2*2-0.3),
            label=vnames, col=colornames, size=3, alpha = 0.7)+
-  annotate("text", size=3, x=speciespoints$CCA1, y=speciespoints$CCA2,
-           fontface=3, label=rownames(speciespoints), col="grey30")+
+  annotate("text", size=n.taxon$size, x=speciespoints$CCA1, y=speciespoints$CCA2,
+           fontface=n.taxon$text, label=rownames(speciespoints), col="grey30")+
   xlim(-1.8,2)+
   theme_classic()+
   theme(axis.line = element_line(colour = "black"),
