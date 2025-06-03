@@ -22,8 +22,7 @@ Most functions used in the scripts are part of the  [EcoPostView](https://snwika
 [Link to Posterior results](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Supplementary_Information_3.xlsx)<br />
 <br />
 [Link to Response 1](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Simulates_Precision_Error_Response_1.R)<br />
-[Link to Response 2](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Simulates_Precision_Gradient_Response_2.R)<br />
-[Link to Response 3](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Stochastic_Simulates_Response_3.xlsx)<br />
+[Link to Response 2](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Simulates_Precision_Gradient_Response_3.R)<br />
 
 ### [Macrophytes and their sedimentary phosphorus niche in lowland rivers](...) <br />
 The data used in this article originates from an exploratory sampling protocol in NRW at the moment it is not published (yet) but it is given in the data availability statement I provide the data online. I assume it will be published somewhere 2025(/2026). I provide five files the full matrix, community matrix (0/1), environmental variable matrix, data used for the GLMM and priors. <br />
