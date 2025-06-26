@@ -40,7 +40,7 @@ nrow(litres1 <- literature[literature$Parameter == "b0",])
 #Log and logit-linear models
 table(literature$Link[literature$Parameter == "b0"])
 
-#Total log and logit-linear models
+#Total log and logit-linear model parameters
 table(literature$Link[literature$Parameter == "b1"])
 
 #Create dataset for the model
@@ -53,17 +53,17 @@ mod_data <- data.frame(group=literature$Response,
 
 #Full model
 mod <- meta(estimate = mod_data$estimate,
-             stderr = mod_data$stderr,
-             parameter = do.call(rbind, strsplit(mod_data$level, "_"))[,1],
-             predictor = mod_data$predictor,
-             link_function = mod_data$linkfun,
-             grouping = mod_data$group,
-             prior_mu = as.data.frame(priors[c(2,4,6,8)]),
-             prior_mu_se = as.data.frame(priors[c(3,5,7,9)]),
-             prior_study_var = 5,
-             n_iter = 30000,
-             n_thin = 30,
-             n_chain= numberofcores)
+            stderr = mod_data$stderr,
+            parameter = do.call(rbind, strsplit(mod_data$level, "_"))[,1],
+            predictor = mod_data$predictor,
+            link_function = mod_data$linkfun,
+            grouping = mod_data$group,
+            prior_mu = as.data.frame(priors[c(2,4,6,8)]),
+            prior_mu_se = as.data.frame(priors[c(3,5,7,9)]),
+            prior_study_var = 5,
+            n_iter = 30000,
+            n_thin = 30,
+            n_chain= numberofcores)
 
 ##############
 #Select order#
@@ -116,6 +116,8 @@ mod_sens$Estimates$b1$estimate[mod_sens$Estimates$b1$predictor %in% c("Flow-cess
 sensitivity_check <- senscheck(mod_inv, mod_sens, order_predictor = order_p, order_group = order_g)
 
 ggsave(sensitivity_check$posterior_odds, filename=paste0(wd,"/Fig_S10.jpeg"), units = "mm", width = 200, height = 120, dpi = 300)
+ggsave(sensitivity_check$overlay$log, filename=paste0(wd,"/Fig_S11.jpeg"), units = "mm", width = 240, height = 180, dpi = 300)
+ggsave(sensitivity_check$overlay$logit, filename=paste0(wd,"/Fig_S12.jpeg"), units = "mm", width = 240, height = 180, dpi = 300)
 
 ############################################################
 #Visualizing the results (Posterior density plots figure 2)#
@@ -136,47 +138,47 @@ pdp_combined <- cowplot::plot_grid(title_pl_log,
                                    ncol=1,
                                    rel_heights = c(0.025, 0.225, 0.025, 0.225))
 
-ggsave(pdp_combined, filename=paste0(wd,"/Fig_2.jpeg"), units = "mm", width = 190, height = 240, dpi = 300)
+ggsave(pdp_combined, filename=paste0(wd,"/Fig_2.jpeg"), units = "mm", width = 190, height = 240, dpi = 1000)
 
 ###############################################################
 #Visualizing the results (Hypothetical outcome plots figure 3)#
 ###############################################################
 
-hop_pl1 <- hop(mod, group="Bacteria", predictor = "Warming",
+hop_pl1 <- hop(mod, group="Invertebrates", predictor = "Warming",
                xlab= expression(Temperature ~ "[" ~ degree * C ~ "]"),
-               link_function = "logit", ylab="Bacteria evenness",
-               xlim=c(0, 3.4), ylim=c(0.7, 1),
+               link_function = "log", ylab="Invertebrate richness",
+               xlim=c(0, 3.4), ylim=c(0, 30),
                exp_axis = T, round_x_axis = 0,
                nr_hops = 2500, hop_alpha = 0.05,
                hop_lwd = 0.3, xtextsize = 8,
                ytextsize = 8)
 
-hop_pl2 <- hop(mod, group="Algae", predictor = "N-increase",
-             xlab= expression(`Nutrient-N`~ "[" * mg ~ L^-1* "]"),
-             link_function = "logit", ylab="Algae evenness",
-             xlim=c(0, 3.4), ylim=c(0.1,.9),
-             exp_axis = T, round_x_axis = 0,
-             nr_hops = 2500, hop_alpha = 0.05,
-             hop_lwd = 0.3, xtextsize = 8,
-             ytextsize = 8)
+hop_pl2 <- hop(mod, group="Fish", predictor = "Warming",
+               xlab= expression(Temperature ~ "[" ~ degree * C ~ "]"),
+               link_function = "log", ylab="Fish richness",
+               xlim=c(0, 3.4), ylim=c(0, 80),
+               exp_axis = T, round_x_axis = 0,
+               nr_hops = 2500, hop_alpha = 0.05,
+               hop_lwd = 0.3, xtextsize = 8,
+               ytextsize = 8)
 
 hop_pl3 <- hop(mod, group="Invertebrates", predictor = "Sediment-enrichment",
-             xlab = c("Fine sediment fraction"), ylab="Invertebrate richness",
-             link_function = "log", ylim=c(0,80),
-             xlim=c(-4.6, 0), exp_axis = T,
-             nr_hops = 2500, hop_alpha = 0.05,
-             round_x_axis = 2,
-             hop_lwd = 0.3, xtextsize = 8,
-             ytextsize = 8)
+               xlab = c("Fine sediment fraction"), ylab="Invertebrate richness",
+               link_function = "log", ylim=c(0,80),
+               xlim=c(-4.6, 0), exp_axis = T,
+               nr_hops = 2500, hop_alpha = 0.05,
+               round_x_axis = 2,
+               hop_lwd = 0.3, xtextsize = 8,
+               ytextsize = 8)
 
-hop_pl4 <- hop(mod, group="Fish", predictor = "Flow-cessation",
-            xlab = expression(`Flow velocity` ~ "[" * m ~ s^-1 * "]"),
-            link_function = "log", ylab ="Fish richness",
-            xlim=c(-4.6, 0.4), ylim=c(0, 25),
-            round_x_axis = 2, exp_axis = T,
-            nr_hops = 2500, hop_alpha = 0.05,
-            hop_lwd = 0.3, xtextsize = 8,
-            ytextsize = 8)
+hop_pl4 <- hop(mod, group="Fish", predictor = "Sediment-enrichment",
+               xlab = c("Fine sediment fraction"),
+               link_function = "log", ylab ="Fish richness",
+               xlim=c(-4.6, 0), ylim=c(0, 100),
+               round_x_axis = 2, exp_axis = T,
+               nr_hops = 2500, hop_alpha = 0.05,
+               hop_lwd = 0.3, xtextsize = 8,
+               ytextsize = 8)
 
 fig3_main  <- cowplot::plot_grid(hop_pl1, hop_pl2, hop_pl3, hop_pl4, labels="auto", ncol=2)
 ggsave(fig3_main, filename=paste0(wd,"/Fig_3.jpeg"), units = "mm", width = 120, height = 120, dpi = 300)
@@ -186,19 +188,19 @@ ggsave(fig3_main, filename=paste0(wd,"/Fig_3.jpeg"), units = "mm", width = 120, 
 #############################################################
 
 pdp1 <- hop(mod,
-            group="Algae",
-            predictor = c("Salinity-increase", "N-increase"),
-            xlab= expression(Salinity ~ "[" * µS ~ cm^-1 * "]"),
-            ylab= expression(Nutrient-N ~ "[" * mg ~ L^-1 * "]"),
-            gradient_title = "Algae\neveness",
+            group="Invertebrates",
+            predictor = c("Warming", "Oxygen-depletion"),
+            xlab= expression(Temperature ~ "[" ~ degree * C ~ "]"),
+            ylab= expression(Oxygen ~ "[" * mg ~ L^-1 * "]"),
+            gradient_title = "Invertebrate\nrichness",
             pdp_resolution = 100,
             legend_position = "top",
-            link_function = "logit",
+            link_function = "log",
             exp_axis = T,
             round_x_axis = 0,
             round_y_axis = 0,
-            xlim=c(3.91, 8.5172),
-            ylim=c(-1.5, 3.4),
+            xlim=c(0, 3.4),
+            ylim=c(0, 2.77),
             xtextsize = 8,
             ytextsize = 8)
 
@@ -207,21 +209,21 @@ pdp1 <- pdp1+theme(legend.title = element_text(size=8),
                    legend.text = element_text(size=7))
 
 pdp2 <- hop(mod,
-    group="Invertebrates",
-    predictor = c("Sediment-enrichment", "Oxygen-depletion"),
-    xlab= "Fine sediment fraction",
-    ylab= expression(Oxygen ~ "[" * mg ~ L^-1 * "]"),
-    gradient_title = "Invertebrate\nrichness",
-    pdp_resolution = 100,
-    legend_position = "top",
-    link_function = "log",
-    exp_axis = T,
-    round_x_axis = 2,
-    round_y_axis = 0,
-    xlim=c(-4.61, -0.92),
-    ylim=c(1.61, 2.77),
-    xtextsize = 8,
-    ytextsize = 8)
+            group="Fish",
+            predictor = c("Sediment-enrichment",  "Flow-cessation"),
+            xlab= c("Fine sediment fraction"),
+            ylab= expression(`Flow velocity` ~ "[" * m ~ s^-1 * "]"),
+            gradient_title = "Fish\nrichness",
+            pdp_resolution = 100,
+            legend_position = "top",
+            link_function = "log",
+            exp_axis = T,
+            round_x_axis = 2,
+            round_y_axis = 2,
+            xlim=c(-4.61, -0.92),
+            ylim=c(-4.6, 0.4),
+            xtextsize = 8,
+            ytextsize = 8)
 
 pdp2 <- pdp2+theme(legend.title = element_text(size=8),
                    legend.key.size = unit(4, 'mm'),
@@ -229,3 +231,59 @@ pdp2 <- pdp2+theme(legend.title = element_text(size=8),
 
 fig4_main <- cowplot::plot_grid(pdp1, pdp2, ncol = 2, labels = "auto")
 ggsave(fig4_main, filename=paste0(wd,"/Fig_4.jpeg"), units = "mm", width = 120, height = 80, dpi = 300)
+
+#################
+#Full panel plot#
+#################
+
+xlim  <- list(c(2.99, 8.00),
+            c(0, 2.77),
+            c(-4.3, -0.4),
+            c(1, 3.40),
+            c(-2.99, 0.41),
+            c(1, 3.40),
+            c(1, 0.4))
+
+ylim  <- list(c(0, 5000),
+              c(0, 80),
+              c(0, 20),
+              c(0, 40),
+              c(0, 40))
+
+xlab <- list(c(expression(Salinity ~ "[" * uS ~ cm^-1 * "]")),
+          c(expression(Oxygen ~ "[" * mg ~ L^-1 * "]")),
+          c("Fine sediment fraction"),
+          c(expression(Temperature ~ "[" ~ degree * C ~ "]")),
+          c(expression(`Flow velocity` ~ "[" * m ~ s^-1 * "]")),
+          c(expression(Nitrogen ~ "[" * mg ~ L^-1 * "]")),
+          c(expression(Phosphorus ~ "[" * mg ~ L^-1 * "]")))
+
+hop_list <- list()
+
+step_g <- 0
+for(g in order_g){
+
+step_g <- step_g+1
+
+step_p <- 0
+for(p in order_p){
+
+step_p <- step_p+1
+
+if(step_p %in% c(3,5,7)){roundstuff <- 2}else{roundstuff <- 0}
+
+print(roundstuff)
+
+hop_list[[paste(step_g, step_p, sep="_")]] <- hop(
+    mod, group=order_g[[step_g]], predictor = p,
+    xlab=xlab[[step_p]], ylab = order_g[step_g],
+    link_function = "log",
+    xlim=xlim[[step_p]], ylim=ylim[[step_g]],
+    exp_axis = T, round_x_axis = roundstuff,
+    nr_hops = 500, hop_alpha = 0.05,
+    hop_lwd = 0.3, xtextsize = 8,
+    ytextsize = 8)
+
+}}
+
+cowplot::plot_grid(plotlist = hop_list, nrow=5)
