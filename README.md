@@ -9,7 +9,7 @@ read.csv(url("https://raw.githubusercontent.com/snwikaij/Data/main/Aquatic_Botan
 # 2025
 ### [Global scale quantification of stressor responses in five riverine organism groups](...)<br />
 These data include two scripts:<br />
-Main Script – Generates the figures for the main text, including Figures S7, S8, S9, and S10, but excluding Figures 5 and 6. <br />
+Main Script – Generates the figures for the main text, including Figures S7, S8, S9, S10, S11 and S12 but excluding Figures 5 and 6. <br />
 Appendix script - Produces the figures presented in the appendix. <br />
 <br />
 Additionally, two Excel documents (Link Data_and_priors and Link to Posterior_results) are included. These contain the necessary data and priors to run both the main and appendix scripts, as well as the acces the posterior estimates from the full analysis.
