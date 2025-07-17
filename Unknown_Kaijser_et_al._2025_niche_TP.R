@@ -132,6 +132,11 @@ univar_niche <- function(env, taxa, prior_mu=NULL, prior_mu_se=NULL, prior_sd=NU
 
 }
 
+#The reviewer suggested to drop these species I forgot to adress this
+#I thought the reviewer refered to Fig. 2. Therefore, I choose to drop them anyhow.
+niche  <- niche[!niche$name %in% c("Potamogeton natans (n=5)", "Ceratophyllum demersum (n=6)", "Potamogeton berchtoldii (n=5)"),]
+priors <- priors[!priors$Taxon %in% c("Potamogeton natans", "Ceratophyllum demersum", "Potamogeton berchtoldii"),]
+                     
 #run the function
 resultsTP <- univar_niche(env=as.numeric(niche$TP), taxa=as.factor(niche$name),
                           xlab = expression(paste("Pore water TP"," (","μg"~L^-1,")")),
