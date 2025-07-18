@@ -12,8 +12,8 @@ env.mat     <- read_xlsx(destfile, 3)
 
 #Sample size per taxon
 n.taxon      <- data.frame(n=colSums(com.mat>0))
-n.taxon$text <- ifelse(n.taxon$n>=5, "bold", "plain")
-n.taxon$size <- ifelse(n.taxon$n>=5, 4, 3)
+n.taxon$text <- ifelse(n.taxon$n>=7, "bold", "plain")
+n.taxon$size <- ifelse(n.taxon$n>=7, 4, 3)
 
 #run cca
 my.cca <- vegan::cca(com.mat ~ ., data=env.mat, na.action=na.omit)
