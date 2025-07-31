@@ -43,6 +43,16 @@ table(literature$Link[literature$Parameter == "b0"])
 #Total log and logit-linear model parameters
 table(literature$Link[literature$Parameter == "b1"])
 
+#Summary of the number of observations in a model
+c('median'=median(litres1$n), 'mean'=mean(litres1$n), 'SD'=sd(litres1$n))
+
+#Summary of the number of stressors in a model
+stressor       <- literature[literature$Parameter == "b1", ]
+long_df        <- as.data.frame(table(stressor$DOI, stressor$Link))
+stressor_model <- long_df$Freq[long_df$Freq != 0]
+
+c('median'=median(stressor_model), 'mean'=mean(stressor_model), 'SD'=sd(stressor_model))
+
 #Create dataset for the model
 mod_data <- data.frame(group=literature$Response,
                        predictor=literature$Fignames,
