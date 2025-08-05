@@ -6,7 +6,7 @@ library(mcmcplots)
 #To use the whole code JAGS is needed running outside R https://mcmc-jags.sourceforge.io/
 
 #download the data
-url      <- "https://raw.githubusercontent.com/snwikaij/Data/main/Unknown_Kaijser_et_al._2025.xlsx"
+url      <- "https://raw.githubusercontent.com/snwikaij/Data/main/PLOS_One_Kaijser_et_al._2025.xlsx"
 destfile <- tempfile(fileext = ".xlsx")
 download.file(url, destfile, mode = "wb")
 env      <- read_xlsx(destfile, 3)
