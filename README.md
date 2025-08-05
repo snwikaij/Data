@@ -28,9 +28,9 @@ Most functions used in the scripts are part of the  [EcoPostView](https://snwika
 The data used in this article originates from an exploratory sampling protocol in NRW at the moment it is not published (yet) but it is given in the data availability statement I provide the data online. I assume it will be published somewhere 2025(/2026). I provide five files the full matrix, community matrix (0/1), environmental variable matrix, data used for the GLMM and priors. <br />
 <br />
 [Link to Data](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025.xlsx)<br />
-[Link to TP niche code](https://github.com/snwikaij/Data/blob/main/PLOS_One_Kaijser_et_al._niche_TP.R)<br />
+[Link to TP niche code](https://github.com/snwikaij/Data/blob/main/PLOS_One_Kaijser_et_al._2025_niche_TP.R)<br />
 [Link to CCA code](https://github.com/snwikaij/Data/blob/main/PLOS_One_Kaijser_et_al._2025_cca.R)<br />
-[Link to GLMM code](https://github.com/snwikaij/Data/blob/main/PLOS_One_Kaijser_et_al._GLMM_TP.R)<br />
+[Link to GLMM code](https://github.com/snwikaij/Data/blob/main/PLOS_One_Kaijser_et_al._2025_GLMM_TP.R)<br />
 
 # 2024
 ### [Differential associations of five riverine organism groups with multiple stressors](https://www.sciencedirect.com/science/article/pii/S0048969724032522?via%3Dihub) <br />
