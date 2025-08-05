@@ -4,7 +4,7 @@ library(ggplot2)
 library(plyr)
 
 #download the data
-url         <- "https://raw.githubusercontent.com/snwikaij/Data/main/Unknown_Kaijser_et_al._2025.xlsx"
+url         <- "https://raw.githubusercontent.com/snwikaij/Data/main/PLOS_One_Kaijser_et_al._2025.xlsx"
 destfile    <- tempfile(fileext = ".xlsx")
 download.file(url, destfile, mode = "wb")
 com.mat     <- read_xlsx(destfile, 2)
