@@ -6,13 +6,15 @@ library(mime)
 library(devtools)
 library(gridExtra)
 library(grid)
+library(png)
+library(cowplot)
 
 #JAGS needs to be installed from https://sourceforge.net/projects/mcmc-jags/
-library(R2jags)
+#library(R2jags)
 
 #For further information check https://snwikaij.github.io/EcoPostView/EcoPostView.html
 #One needs to install the package from GitHub
-devtools::install_github("snwikaij/EcoPostView")
+#devtools::install_github("snwikaij/EcoPostView")
 library(EcoPostView)
 
 #Get wd, this will be the location where all figures will be stored.
@@ -25,8 +27,8 @@ numberofcores <- parallel::detectCores()
 url         <- "https://raw.githubusercontent.com/snwikaij/Data/main/Unknown_Kaijser_et_al._2025_Supplementary_Information_2.xlsx"
 destfile    <- tempfile(fileext = ".xlsx")
 download.file(url, destfile, mode = "wb")
-literature  <- read_xlsx(destfile, 1)
-priors      <- read_xlsx(destfile, 3)
+literature  <- readxl::read_xlsx(destfile, 1)
+priors      <- readxl::read_xlsx(destfile, 3)
 
 #Total number of articles
 nrow(litres2 <- literature[!duplicated(literature$DOI),])
@@ -42,6 +44,11 @@ table(literature$Link[literature$Parameter == "b0"])
 
 #Total log and logit-linear model parameters
 table(literature$Link[literature$Parameter == "b1"])
+
+#Number of groups per model type
+onlyb1 <- literature[literature$Parameter == "b1",] 
+table(onlyb1$Response[onlyb1$Link == "log"])
+table(onlyb1$Response[onlyb1$Link == "logit"])
 
 #Summary of the number of observations in a model
 c('median'=median(litres1$n), 'mean'=mean(litres1$n), 'SD'=sd(litres1$n))
@@ -88,9 +95,9 @@ order_g     <- c("Bacteria", "Algae", "Macrophytes", "Invertebrates", "Fish")
 
 residual_check <- rescheck(mod, order_predictor = order_p, order_group = order_g)
 
-ggsave(residual_check$bias_se, filename=paste0(wd,"/Fig_S7.jpeg"), units = "mm", width = 200, height = 120, dpi = 300)
-ggsave(residual_check$bias_se_group, filename=paste0(wd,"/Fig_S8.jpeg"), units = "mm", width = 200, height = 120, dpi = 300)
-ggsave(residual_check$bias_se_predictor, filename=paste0(wd,"/Fig_S9.jpeg"), units = "mm", width = 200, height = 120, dpi = 300)
+ggsave(residual_check$bias_se, filename=paste0(wd,"/Fig_S7.png"), units = "mm", width = 200, height = 120, dpi = 300)
+ggsave(residual_check$bias_se_group, filename=paste0(wd,"/Fig_S8.png"), units = "mm", width = 200, height = 120, dpi = 300)
+ggsave(residual_check$bias_se_predictor, filename=paste0(wd,"/Fig_S9.png"), units = "mm", width = 200, height = 120, dpi = 300)
 
 ###########
 #Inversion#
@@ -125,15 +132,15 @@ mod_sens$Estimates$b1$estimate[mod_sens$Estimates$b1$predictor %in% c("Flow-cess
 
 sensitivity_check <- senscheck(mod_inv, mod_sens, order_predictor = order_p, order_group = order_g)
 
-ggsave(sensitivity_check$posterior_odds, filename=paste0(wd,"/Fig_S10.jpeg"), units = "mm", width = 200, height = 120, dpi = 300)
-ggsave(sensitivity_check$overlay$log, filename=paste0(wd,"/Fig_S11.jpeg"), units = "mm", width = 240, height = 180, dpi = 300)
-ggsave(sensitivity_check$overlay$logit, filename=paste0(wd,"/Fig_S12.jpeg"), units = "mm", width = 240, height = 180, dpi = 300)
+ggsave(sensitivity_check$posterior_odds, filename=paste0(wd,"/Fig_S10.png"), units = "mm", width = 200, height = 120, dpi = 300)
+ggsave(sensitivity_check$overlay$log, filename=paste0(wd,"/Fig_S11.png"), units = "mm", width = 240, height = 180, dpi = 300)
+ggsave(sensitivity_check$overlay$logit, filename=paste0(wd,"/Fig_S12.png"), units = "mm", width = 240, height = 180, dpi = 300)
 
 ############################################################
 #Visualizing the results (Posterior density plots figure 2)#
 ############################################################
 
-postdens       <- pdplot(mod_inv, title_size = 2, point_size = .8, line_width = .7, err_bar_lwd = .5,
+postdens       <- pdplot(mod_inv, title_size = 2, point_size = 1.1, line_width = .5, err_bar_lwd = .5,
                          xlab=c("Pooled parameter estimate [=regression coefficient]"),
                          ylab=c("Probability distribution"),
                          order_predictor = order_p, order_group = order_g)
@@ -148,7 +155,35 @@ pdp_combined <- cowplot::plot_grid(title_pl_log,
                                    ncol=1,
                                    rel_heights = c(0.025, 0.225, 0.025, 0.225))
 
-ggsave(pdp_combined, filename=paste0(wd,"/Fig_2.jpeg"), units = "mm", width = 190, height = 240, dpi = 1000)
+bacteria      <- readPNG("C:/Users/admin/OneDrive/Bureaublad/Paper3/Figures/other/bacteria.png")  
+algae         <- readPNG("C:/Users/admin/OneDrive/Bureaublad/Paper3/Figures/other/algae.png")  
+macrophytes   <- readPNG("C:/Users/admin/OneDrive/Bureaublad/Paper3/Figures/other/macrophytes.png")  
+invertebrates <- readPNG("C:/Users/admin/OneDrive/Bureaublad/Paper3/Figures/other/invertebrates.png")  
+fish          <- readPNG("C:/Users/admin/OneDrive/Bureaublad/Paper3/Figures/other/fish.png")  
+
+pdp_combined <- ggdraw(pdp_combined) +
+  draw_image(bacteria, y = 0.89, x = 0.01,
+             width = 0.075, height = 0.075)+
+  draw_image(algae, y = 0.805, x = 0.01,
+             width = 0.075, height = 0.075)+
+  draw_image(macrophytes, y = 0.725, x = 0.01,
+             width = 0.07, height = 0.07)+
+  draw_image(invertebrates, y = 0.64, x = 0.01,
+             width = 0.075, height = 0.075)+
+  draw_image(fish, y = 0.555, x = 0.01,
+             width = 0.075, height = 0.075)+
+  draw_image(bacteria, y = 0.39, x = 0.01,
+             width = 0.075, height = 0.075)+
+  draw_image(algae, y = 0.305, x = 0.01,
+             width = 0.075, height = 0.075)+
+  draw_image(macrophytes, y = 0.225, x = 0.01,
+             width = 0.07, height = 0.07)+
+  draw_image(invertebrates, y = 0.14, x = 0.01,
+             width = 0.075, height = 0.075)+
+  draw_image(fish, y = 0.055, x = 0.01,
+             width = 0.075, height = 0.075)
+
+ggsave(pdp_combined, filename=paste0(wd,"/Fig_2.pdf"), units = "mm", width = 180, height = 240, dpi = 1000)
 
 ###############################################################
 #Visualizing the results (Hypothetical outcome plots figure 3)#
@@ -160,8 +195,9 @@ hop_pl1 <- hop(mod, group="Invertebrates", predictor = "Warming",
                xlim=c(0, 3.4), ylim=c(0, 30),
                exp_axis = T, round_x_axis = 0,
                nr_hops = 2500, hop_alpha = 0.05,
-               hop_lwd = 0.3, xtextsize = 8,
-               ytextsize = 8)
+               hop_lwd = 0.5, xtextsize = 12,
+               ytextsize = 12, xlabsize = 10,
+               ylabsize = 10)
 
 hop_pl2 <- hop(mod, group="Fish", predictor = "Warming",
                xlab= expression(Temperature ~ "[" ~ degree * C ~ "]"),
@@ -169,8 +205,8 @@ hop_pl2 <- hop(mod, group="Fish", predictor = "Warming",
                xlim=c(0, 3.4), ylim=c(0, 80),
                exp_axis = T, round_x_axis = 0,
                nr_hops = 2500, hop_alpha = 0.05,
-               hop_lwd = 0.3, xtextsize = 8,
-               ytextsize = 8)
+               hop_lwd = 0.5, xlabsize = 10,
+               ylabsize = 10)
 
 hop_pl3 <- hop(mod, group="Invertebrates", predictor = "Sediment-enrichment",
                xlab = c("Fine sediment fraction"), ylab="Invertebrate richness",
@@ -178,8 +214,9 @@ hop_pl3 <- hop(mod, group="Invertebrates", predictor = "Sediment-enrichment",
                xlim=c(-4.6, 0), exp_axis = T,
                nr_hops = 2500, hop_alpha = 0.05,
                round_x_axis = 2,
-               hop_lwd = 0.3, xtextsize = 8,
-               ytextsize = 8)
+               hop_lwd = 0.5, xtextsize = 12,
+               ytextsize = 12, xlabsize = 10,
+               ylabsize = 10)
 
 hop_pl4 <- hop(mod, group="Fish", predictor = "Sediment-enrichment",
                xlab = c("Fine sediment fraction"),
@@ -187,11 +224,12 @@ hop_pl4 <- hop(mod, group="Fish", predictor = "Sediment-enrichment",
                xlim=c(-4.6, 0), ylim=c(0, 100),
                round_x_axis = 2, exp_axis = T,
                nr_hops = 2500, hop_alpha = 0.05,
-               hop_lwd = 0.3, xtextsize = 8,
-               ytextsize = 8)
+               hop_lwd = 0.5, xtextsize = 12,
+               ytextsize = 12, xlabsize = 10,
+               ylabsize = 10)
 
 fig3_main  <- cowplot::plot_grid(hop_pl1, hop_pl2, hop_pl3, hop_pl4, labels="auto", ncol=2)
-ggsave(fig3_main, filename=paste0(wd,"/Fig_3.jpeg"), units = "mm", width = 120, height = 120, dpi = 300)
+ggsave(fig3_main, filename=paste0(wd,"/Fig_3.pdf"), units = "mm", width = 180, height = 180, dpi = 1000)
 
 #############################################################
 #Visualizing the results (Partial dependence plots figure 4)#
@@ -211,10 +249,12 @@ pdp1 <- hop(mod,
             round_y_axis = 0,
             xlim=c(0, 3.4),
             ylim=c(0, 2.77),
-            xtextsize = 8,
-            ytextsize = 8)
+            xtextsize = 12,
+            ytextsize = 12,
+            xlabsize = 10,
+            ylabsize = 10)
 
-pdp1 <- pdp1+theme(legend.title = element_text(size=8),
+pdp1 <- pdp1+theme(legend.title = element_text(size=10),
                    legend.key.size = unit(4, 'mm'),
                    legend.text = element_text(size=7))
 
@@ -232,27 +272,29 @@ pdp2 <- hop(mod,
             round_y_axis = 2,
             xlim=c(-4.61, -0.92),
             ylim=c(-4.6, 0.4),
-            xtextsize = 8,
-            ytextsize = 8)
+            xtextsize = 12,
+            ytextsize = 12,
+            xlabsize = 10,
+            ylabsize = 10)
 
-pdp2 <- pdp2+theme(legend.title = element_text(size=8),
+pdp2 <- pdp2+theme(legend.title = element_text(size=10),
                    legend.key.size = unit(4, 'mm'),
                    legend.text = element_text(size=7))
 
 fig4_main <- cowplot::plot_grid(pdp1, pdp2, ncol = 2, labels = "auto")
-ggsave(fig4_main, filename=paste0(wd,"/Fig_4.jpeg"), units = "mm", width = 120, height = 80, dpi = 300)
+ggsave(fig4_main, filename=paste0(wd,"/Fig_4.pdf"), units = "mm", width = 180, height = 100, dpi = 1000)
 
 #################
 #Full panel plot#
 #################
 
 xlim  <- list(c(2.99, 8.00),
-            c(0, 2.77),
-            c(-4.3, -0.4),
-            c(1, 3.40),
-            c(-2.99, 0.41),
-            c(1, 3.40),
-            c(1, 0.4))
+              c(0, 2.77),
+              c(-4.3, -0.4),
+              c(1, 3.40),
+              c(-2.99, 0.41),
+              c(1, 3.40),
+              c(1, 0.4))
 
 ylim  <- list(c(0, 5000),
               c(0, 80),
@@ -261,39 +303,39 @@ ylim  <- list(c(0, 5000),
               c(0, 40))
 
 xlab <- list(c(expression(Salinity ~ "[" * uS ~ cm^-1 * "]")),
-          c(expression(Oxygen ~ "[" * mg ~ L^-1 * "]")),
-          c("Fine sediment fraction"),
-          c(expression(Temperature ~ "[" ~ degree * C ~ "]")),
-          c(expression(`Flow velocity` ~ "[" * m ~ s^-1 * "]")),
-          c(expression(Nitrogen ~ "[" * mg ~ L^-1 * "]")),
-          c(expression(Phosphorus ~ "[" * mg ~ L^-1 * "]")))
+             c(expression(Oxygen ~ "[" * mg ~ L^-1 * "]")),
+             c("Fine sediment fraction"),
+             c(expression(Temperature ~ "[" ~ degree * C ~ "]")),
+             c(expression(`Flow velocity` ~ "[" * m ~ s^-1 * "]")),
+             c(expression(Nitrogen ~ "[" * mg ~ L^-1 * "]")),
+             c(expression(Phosphorus ~ "[" * mg ~ L^-1 * "]")))
 
 hop_list <- list()
 
 step_g <- 0
 for(g in order_g){
-
-step_g <- step_g+1
-
-step_p <- 0
-for(p in order_p){
-
-step_p <- step_p+1
-
-if(step_p %in% c(3,5,7)){roundstuff <- 2}else{roundstuff <- 0}
-
-print(roundstuff)
-
-hop_list[[paste(step_g, step_p, sep="_")]] <- hop(
-    mod, group=order_g[[step_g]], predictor = p,
-    xlab=xlab[[step_p]], ylab = order_g[step_g],
-    link_function = "log",
-    xlim=xlim[[step_p]], ylim=ylim[[step_g]],
-    exp_axis = T, round_x_axis = roundstuff,
-    nr_hops = 500, hop_alpha = 0.05,
-    hop_lwd = 0.3, xtextsize = 8,
-    ytextsize = 8)
-
-}}
+  
+  step_g <- step_g+1
+  
+  step_p <- 0
+  for(p in order_p){
+    
+    step_p <- step_p+1
+    
+    if(step_p %in% c(3,5,7)){roundstuff <- 2}else{roundstuff <- 0}
+    
+    print(roundstuff)
+    
+    hop_list[[paste(step_g, step_p, sep="_")]] <- hop(
+      mod, group=order_g[[step_g]], predictor = p,
+      xlab=xlab[[step_p]], ylab = order_g[step_g],
+      link_function = "log",
+      xlim=xlim[[step_p]], ylim=ylim[[step_g]],
+      exp_axis = T, round_x_axis = roundstuff,
+      nr_hops = 500, hop_alpha = 0.05,
+      hop_lwd = 0.3, xtextsize = 8,
+      ytextsize = 8)
+    
+  }}
 
 cowplot::plot_grid(plotlist = hop_list, nrow=5)
