@@ -15,7 +15,7 @@ Appendix script - Produces the figures presented in the appendix. <br />
 Additionally, two Excel documents (Link Data_and_priors and Link to Posterior_results) are included. These contain the necessary data and priors to run both the main and appendix scripts, as well as the acces the posterior estimates from the full analysis.
 Most functions used in the scripts are part of the  [EcoPostView](https://snwikaij.github.io/EcoPostView/EcoPostView.html) in R. This R package can be installed via GitHub using the `devtools` package and to use all functions JAGS needs to be installed from https://sourceforge.net/projects/mcmc-jags/ <br /> 
 <br />
-[Link to World map script](https://raw.githubusercontent.com/snwikaij/Data/refs/heads/main/Unknown_Kaijser_et_al._2025_World_map_script.R)<br />
+[Link to World map script](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_World_map_script.R)<br />
 [Link to Main script](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Main_script.R)<br />
 [Link to Appendix script](https://github.com/snwikaij/Data/blob/main/Unknown_Kaijser_et_al._2025_Appendix_script.R)<br />
 <br />
