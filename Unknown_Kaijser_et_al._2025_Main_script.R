@@ -10,7 +10,7 @@ library(png)
 library(cowplot)
 
 #JAGS needs to be installed from https://sourceforge.net/projects/mcmc-jags/
-#library(R2jags)
+library(R2jags)
 
 #For further information check https://snwikaij.github.io/EcoPostView/EcoPostView.html
 #One needs to install the package from GitHub
@@ -95,9 +95,9 @@ order_g     <- c("Bacteria", "Algae", "Macrophytes", "Invertebrates", "Fish")
 
 residual_check <- rescheck(mod, order_predictor = order_p, order_group = order_g)
 
-ggsave(residual_check$bias_se, filename=paste0(wd,"/Fig_S7.png"), units = "mm", width = 200, height = 120, dpi = 300)
-ggsave(residual_check$bias_se_group, filename=paste0(wd,"/Fig_S8.png"), units = "mm", width = 200, height = 120, dpi = 300)
-ggsave(residual_check$bias_se_predictor, filename=paste0(wd,"/Fig_S9.png"), units = "mm", width = 200, height = 120, dpi = 300)
+ggsave(residual_check$bias_se, filename=paste0(wd,"/Fig_S7.png"), units = "mm", width = 200, height = 120, dpi = 2000)
+ggsave(residual_check$bias_se_group, filename=paste0(wd,"/Fig_S8.png"), units = "mm", width = 200, height = 120, dpi = 2000)
+ggsave(residual_check$bias_se_predictor, filename=paste0(wd,"/Fig_S9.png"), units = "mm", width = 200, height = 120, dpi = 2000)
 
 ###########
 #Inversion#
@@ -132,15 +132,15 @@ mod_sens$Estimates$b1$estimate[mod_sens$Estimates$b1$predictor %in% c("Flow-cess
 
 sensitivity_check <- senscheck(mod_inv, mod_sens, order_predictor = order_p, order_group = order_g)
 
-ggsave(sensitivity_check$posterior_odds, filename=paste0(wd,"/Fig_S10.png"), units = "mm", width = 200, height = 120, dpi = 300)
-ggsave(sensitivity_check$overlay$log, filename=paste0(wd,"/Fig_S11.png"), units = "mm", width = 240, height = 180, dpi = 300)
-ggsave(sensitivity_check$overlay$logit, filename=paste0(wd,"/Fig_S12.png"), units = "mm", width = 240, height = 180, dpi = 300)
+ggsave(sensitivity_check$posterior_odds, filename=paste0(wd,"/Fig_S10.png"), units = "mm", width = 200, height = 120, dpi = 2000)
+ggsave(sensitivity_check$overlay$log, filename=paste0(wd,"/Fig_S11.png"), units = "mm", width = 240, height = 180, dpi = 2000)
+ggsave(sensitivity_check$overlay$logit, filename=paste0(wd,"/Fig_S12.png"), units = "mm", width = 240, height = 180, dpi = 2000)
 
 ############################################################
 #Visualizing the results (Posterior density plots figure 2)#
 ############################################################
 
-postdens       <- pdplot(mod_inv, title_size = 2, point_size = 1.1, line_width = .5, err_bar_lwd = .5,
+postdens       <- pdplot(mod_inv, title_size = 2, point_size = 1.1, line_width = .5, err_bar_lwd = .4,
                          xlab=c("Pooled parameter estimate [=regression coefficient]"),
                          ylab=c("Probability distribution"),
                          order_predictor = order_p, order_group = order_g)
@@ -155,33 +155,34 @@ pdp_combined <- cowplot::plot_grid(title_pl_log,
                                    ncol=1,
                                    rel_heights = c(0.025, 0.225, 0.025, 0.225))
 
-bacteria      <- readPNG("C:/Users/admin/OneDrive/Bureaublad/Paper3/Figures/other/bacteria.png")  
-algae         <- readPNG("C:/Users/admin/OneDrive/Bureaublad/Paper3/Figures/other/algae.png")  
-macrophytes   <- readPNG("C:/Users/admin/OneDrive/Bureaublad/Paper3/Figures/other/macrophytes.png")  
-invertebrates <- readPNG("C:/Users/admin/OneDrive/Bureaublad/Paper3/Figures/other/invertebrates.png")  
-fish          <- readPNG("C:/Users/admin/OneDrive/Bureaublad/Paper3/Figures/other/fish.png")  
+group_list <- vector("list", 5)
+groups     <- c("bacteria", "algae", "macrophytes", "invertebrates", "fish")
+for(i in 1:length(groups)){
+  url_loc         <- paste0("https://raw.githubusercontent.com/snwikaij/Data/main/NEE_Groups/",groups[i],".png")
+  tmp             <- readBin(url(url_loc, "rb"), what = "raw", n = 1e6)
+  group_list[[i]] <- readPNG(tmp)}
 
 pdp_combined <- ggdraw(pdp_combined) +
-  draw_image(bacteria, y = 0.89, x = 0.01,
-             width = 0.075, height = 0.075)+
-  draw_image(algae, y = 0.805, x = 0.01,
-             width = 0.075, height = 0.075)+
-  draw_image(macrophytes, y = 0.725, x = 0.01,
-             width = 0.07, height = 0.07)+
-  draw_image(invertebrates, y = 0.64, x = 0.01,
-             width = 0.075, height = 0.075)+
-  draw_image(fish, y = 0.555, x = 0.01,
-             width = 0.075, height = 0.075)+
-  draw_image(bacteria, y = 0.39, x = 0.01,
-             width = 0.075, height = 0.075)+
-  draw_image(algae, y = 0.305, x = 0.01,
-             width = 0.075, height = 0.075)+
-  draw_image(macrophytes, y = 0.225, x = 0.01,
-             width = 0.07, height = 0.07)+
-  draw_image(invertebrates, y = 0.14, x = 0.01,
-             width = 0.075, height = 0.075)+
-  draw_image(fish, y = 0.055, x = 0.01,
-             width = 0.075, height = 0.075)
+  draw_image(group_list[[1]], y = 0.885, x = 0.015,
+             width = 0.065, height = 0.065)+
+  draw_image(group_list[[2]], y = 0.8, x = 0.015,
+             width = 0.065, height = 0.065)+
+  draw_image(group_list[[3]], y = 0.72, x = 0.015,
+             width = 0.06, height = 0.06)+
+  draw_image(group_list[[4]], y = 0.635, x = 0.015,
+             width = 0.065, height = 0.065)+
+  draw_image(group_list[[5]], y = 0.55, x = 0.015,
+             width = 0.065, height = 0.065)+
+  draw_image(group_list[[1]], y = 0.385, x = 0.015,
+             width = 0.065, height = 0.065)+
+  draw_image(group_list[[2]], y = 0.3, x = 0.015,
+             width = 0.065, height = 0.065)+
+  draw_image(group_list[[3]], y = 0.22, x = 0.015,
+             width = 0.06, height = 0.06)+
+  draw_image(group_list[[4]], y = 0.135, x = 0.015,
+             width = 0.065, height = 0.065)+
+  draw_image(group_list[[5]], y = 0.05, x = 0.015,
+             width = 0.065, height = 0.065)
 
 ggsave(pdp_combined, filename=paste0(wd,"/Fig_2.pdf"), units = "mm", width = 180, height = 240, dpi = 1000)
 
