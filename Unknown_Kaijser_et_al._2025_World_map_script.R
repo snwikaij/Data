@@ -59,7 +59,7 @@ worldplot <- ggplot(data = world_data) +
 panel2 <- literature
 panel2 <- panel2[panel2$Parameter == "b1",]
 panel2 <- panel2[c("Type", "Response")]
-panel2 < -as.data.frame(table(panel2$Type, panel2$Response))
+panel2 <- as.data.frame(table(panel2$Type, panel2$Response))
 panel2$Var2 <- factor(panel2$Var2, c("Bacteria", "Algae", "Macrophytes", "Invertebrates", "Fish"))
 
 panel2$Var1 <- plyr::mapvalues(panel2$Var1, from=c("Salinity", "Oxygen", "Sediment", "Thermal", "Flow", "Nutrient-N", "Nutrient-P"),
