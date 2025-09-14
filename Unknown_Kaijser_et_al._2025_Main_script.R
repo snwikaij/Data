@@ -77,6 +77,7 @@ mod <- meta(estimate = mod_data$estimate,
             grouping = mod_data$group,
             prior_mu = as.data.frame(priors[c(2,4,6,8)]),
             prior_mu_se = as.data.frame(priors[c(3,5,7,9)]),
+            prior_fam_var = "unif2",
             prior_study_var = 5,
             n_iter = 30000,
             n_thin = 30,
@@ -122,6 +123,8 @@ mod_sens <- meta(estimate = mod_data$estimate,
                  predictor = mod_data$predictor,
                  link_function = mod_data$linkfun,
                  grouping = mod_data$group,
+                 prior_fam_var = "unif2",
+                 prior_study_var = 5,
                  prior_mu = 0,
                  prior_mu_se = 10,
                  n_iter = 30000,
@@ -340,3 +343,4 @@ for(g in order_g){
   }}
 
 cowplot::plot_grid(plotlist = hop_list, nrow=5)
+
