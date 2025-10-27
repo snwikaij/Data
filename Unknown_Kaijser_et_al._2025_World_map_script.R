@@ -68,14 +68,15 @@ panel2$Var1 <- factor(panel2$Var1, rev(c("Salinity-increase", "Oxygen-depletion"
 
 pl2 <- ggplot(data=panel2, aes(x=Var1, y=Freq, fill=Var2))+
   geom_bar(stat="identity", col="black")+coord_flip()+theme_classic()+labs(fill="Group")+
-  theme(axis.title = element_blank())+ylab("Instances")+
+  ylab("Number of stressor-response associations")+
   theme(legend.text = element_text(size=8),
         axis.text.y = element_text(size=8),
+        axis.title.y = element_blank(),
         legend.background = element_rect(fill = "transparent", color = NA),
         legend.key.size = unit(1, "mm"),
         legend.position = "inside",
         legend.position.inside = c(0.8, 0.2))
 
-fig1plot <- cowplot::plot_grid(cowplot::plot_grid(NULL, worldplot, rel_widths = c(0.05, 0.95)), pl4, ncol=1, labels = "auto")
+fig1plot <- cowplot::plot_grid(cowplot::plot_grid(NULL, worldplot, rel_widths = c(0.05, 0.95)), pl2, ncol=1, labels = "auto")
 
 ggsave(fig1plot, filename="C:/Users/admin/OneDrive/Bureaublad/Paper3/Figures/Fig1_main.pdf", units = "mm", width = 180, height = 120, dpi = 1000)
