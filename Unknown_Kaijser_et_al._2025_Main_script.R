@@ -69,7 +69,7 @@ mod_data <- data.frame(group=literature$Response,
                        linkfun=literature$Link)
 
 #Full model
-mod <- meta(estimate = mod_data$estimate,
+mod <- EcoPostView::meta(estimate = mod_data$estimate,
             stderr = mod_data$stderr,
             parameter = do.call(rbind, strsplit(mod_data$level, "_"))[,1],
             predictor = mod_data$predictor,
@@ -94,7 +94,7 @@ order_g     <- c("Bacteria", "Algae", "Macrophytes", "Invertebrates", "Fish")
 #Posterior residual bias check (figures S7,8 and 9)#
 ####################################################
 
-residual_check <- rescheck(mod, order_predictor = order_p, order_group = order_g)
+residual_check <-  EcoPostView::rescheck(mod, order_predictor = order_p, order_group = order_g)
 
 ggsave(residual_check$bias_se, filename=paste0(wd,"/Fig_S7.png"), units = "mm", width = 200, height = 120, dpi = 2000)
 ggsave(residual_check$bias_se_group, filename=paste0(wd,"/Fig_S8.png"), units = "mm", width = 200, height = 120, dpi = 2000)
@@ -117,7 +117,7 @@ mod_inv$Estimates$b1$estimate[mod_inv$Estimates$b1$predictor %in% c("Flow-cessat
 ###################################
 
 #Sensitivity check
-mod_sens <- meta(estimate = mod_data$estimate,
+mod_sens <-  EcoPostView::meta(estimate = mod_data$estimate,
                  stderr = mod_data$stderr,
                  parameter = do.call(rbind, strsplit(mod_data$level, "_"))[,1],
                  predictor = mod_data$predictor,
@@ -133,7 +133,7 @@ mod_sens <- meta(estimate = mod_data$estimate,
 
 mod_sens$Estimates$b1$estimate[mod_sens$Estimates$b1$predictor %in% c("Flow-cessation", "Oxygen-depletion")] <- -1*mod_sens$Estimates$b1$estimate[mod_sens$Estimates$b1$predictor %in% c("Flow-cessation", "Oxygen-depletion")]
 
-sensitivity_check <- senscheck(mod_inv, mod_sens, order_predictor = order_p, order_group = order_g)
+sensitivity_check <-  EcoPostView::senscheck(mod_inv, mod_sens, order_predictor = order_p, order_group = order_g)
 
 ggsave(sensitivity_check$posterior_odds, filename=paste0(wd,"/Fig_S10.png"), units = "mm", width = 200, height = 120, dpi = 2000)
 ggsave(sensitivity_check$overlay$log, filename=paste0(wd,"/Fig_S11.png"), units = "mm", width = 240, height = 180, dpi = 2000)
@@ -143,7 +143,7 @@ ggsave(sensitivity_check$overlay$logit, filename=paste0(wd,"/Fig_S12.png"), unit
 #Visualizing the results (Posterior density plots figure 2)#
 ############################################################
 
-postdens       <- pdplot(mod_inv, title_size = 2, point_size = 1.1, line_width = .5, err_bar_lwd = .4,
+postdens       <-  EcoPostView::pdplot(mod_inv, title_size = 2, point_size = 1.1, line_width = .5, err_bar_lwd = .4,
                          xlab=c("Pooled parameter estimate [=regression coefficient]"),
                          ylab=c("Probability distribution"),
                          order_predictor = order_p, order_group = order_g)
@@ -193,7 +193,7 @@ ggsave(pdp_combined, filename=paste0(wd,"/Fig_2.pdf"), units = "mm", width = 180
 #Visualizing the results (Hypothetical outcome plots figure 3)#
 ###############################################################
 
-hop_pl1 <- hop(mod, group="Invertebrates", predictor = "Warming",
+hop_pl1 <-  EcoPostView::hop(mod, group="Invertebrates", predictor = "Warming",
                xlab= expression(Temperature ~ "[" ~ degree * C ~ "]"),
                link_function = "log", ylab="Invertebrate richness",
                xlim=c(0, 3.4), ylim=c(0, 30),
@@ -203,7 +203,7 @@ hop_pl1 <- hop(mod, group="Invertebrates", predictor = "Warming",
                ytextsize = 12, xlabsize = 10,
                ylabsize = 10)
 
-hop_pl2 <- hop(mod, group="Fish", predictor = "Warming",
+hop_pl2 <-  EcoPostView::hop(mod, group="Fish", predictor = "Warming",
                xlab= expression(Temperature ~ "[" ~ degree * C ~ "]"),
                link_function = "log", ylab="Fish richness",
                xlim=c(0, 3.4), ylim=c(0, 80),
@@ -212,7 +212,7 @@ hop_pl2 <- hop(mod, group="Fish", predictor = "Warming",
                hop_lwd = 0.5, xlabsize = 10,
                ylabsize = 10)
 
-hop_pl3 <- hop(mod, group="Invertebrates", predictor = "Sediment-enrichment",
+hop_pl3 <-  EcoPostView::hop(mod, group="Invertebrates", predictor = "Sediment-enrichment",
                xlab = c("Fine sediment fraction"), ylab="Invertebrate richness",
                link_function = "log", ylim=c(0,80),
                xlim=c(-4.6, 0), exp_axis = T,
@@ -222,7 +222,7 @@ hop_pl3 <- hop(mod, group="Invertebrates", predictor = "Sediment-enrichment",
                ytextsize = 12, xlabsize = 10,
                ylabsize = 10)
 
-hop_pl4 <- hop(mod, group="Fish", predictor = "Sediment-enrichment",
+hop_pl4 <-  EcoPostView::hop(mod, group="Fish", predictor = "Sediment-enrichment",
                xlab = c("Fine sediment fraction"),
                link_function = "log", ylab ="Fish richness",
                xlim=c(-4.6, 0), ylim=c(0, 100),
@@ -239,7 +239,7 @@ ggsave(fig3_main, filename=paste0(wd,"/Fig_3.pdf"), units = "mm", width = 180, h
 #Visualizing the results (Partial dependence plots figure 4)#
 #############################################################
 
-pdp1 <- hop(mod,
+pdp1 <-  EcoPostView::hop(mod,
             group="Invertebrates",
             predictor = c("Warming", "Oxygen-depletion"),
             xlab= expression(Temperature ~ "[" ~ degree * C ~ "]"),
@@ -262,7 +262,7 @@ pdp1 <- pdp1+theme(legend.title = element_text(size=10),
                    legend.key.size = unit(4, 'mm'),
                    legend.text = element_text(size=7))
 
-pdp2 <- hop(mod,
+pdp2 <- EcoPostView::hop(mod,
             group="Fish",
             predictor = c("Sediment-enrichment",  "Flow-cessation"),
             xlab= c("Fine sediment fraction"),
