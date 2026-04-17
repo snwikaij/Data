@@ -1,6 +1,6 @@
 library(ggplot2)
 
-asses_bias <- function(b1=-0.3, b0=3, nsim=3000){
+assess_bias <- function(b1=-0.3, b0=3, nsim=3000){
 
 df <- array(NA, dim=c(nsim,6))
 
@@ -61,6 +61,6 @@ textbox$text <- paste("mean deviation \nfrom true estimate=", round(textbox$mu,2
 
 pl1+geom_text(data=textbox, aes(x=-0.05, y=value, label=text))}
                        
-figure <- asses_bias()
+figure <- assess_bias()
 
 print(figure)
